@@ -1,6 +1,5 @@
 package com.example.monitorserver.mapper;
 
-import com.example.monitorserver.dto.OnlineDTO;
 import com.example.monitorserver.dto.RegisterlogDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
