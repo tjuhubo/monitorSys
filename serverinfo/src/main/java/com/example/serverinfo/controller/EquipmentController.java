@@ -51,7 +51,7 @@ public class EquipmentController {
     public Boolean updateToOff(@RequestBody EquipmentDTO equipmentDTO){
         return equipmentService.updateToOff(equipmentDTO);
     }
-
+    //暂时没实现这个接口
     //删除某个客户端
     @CrossOrigin(origins = "*",maxAge = 3600)
     @RequestMapping(value = "/delclient",method = RequestMethod.POST)

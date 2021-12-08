@@ -13,6 +13,7 @@ public class EquipmentLogController {
     @Autowired
     EquipmentLogService equipmentLogService;
 
+    //每个小时获取一次设备的客户端数量统计，插入到log表，用于话前端的表
     @CrossOrigin(origins = "*",maxAge = 3600)
     @RequestMapping(value = "/log",method = RequestMethod.POST)
     @ResponseBody

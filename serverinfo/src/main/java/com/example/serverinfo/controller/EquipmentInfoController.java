@@ -15,7 +15,7 @@ public class EquipmentInfoController {
     private EquipmentInfoService equipmentInfoService;
 
 
-    //获取设备当前信息
+    //获取所有设备当前信息
     @CrossOrigin(origins = "*",maxAge = 3600)
     @RequestMapping(value = "/eqinfo",method = RequestMethod.GET)
     @ResponseBody
