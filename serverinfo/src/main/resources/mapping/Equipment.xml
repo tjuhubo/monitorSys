@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.serverinfo.mapper.EquipmentMapper">
+
+
+    <resultMap id="BaseResultMap" type="com.example.serverinfo.dto.EquipmentDTO">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="os" jdbcType="VARCHAR" property="os" />
+        <result column="maxcount" jdbcType="INTEGER" property="maxcount" />
+        <result column="status" jdbcType="TINYINT" property="status" />
+    </resultMap>
+    <select id="selAllOn" resultMap="BaseResultMap">
+        select * from equipment
+    </select>
+
+    <select id="selByName" parameterType="com.example.serverinfo.dto.EquipmentDTO" resultMap="BaseResultMap">
+        select * from equipment where name=#{name}
+    </select>
+
+    <update id="updateToOn" parameterType="com.example.serverinfo.dto.EquipmentDTO">
+        update equipment set status = 1 where name=#{name}
+    </update>
+
+    <update id="updateToOff" parameterType="com.example.serverinfo.dto.EquipmentDTO">
+        update equipment set status = 0 where name=#{name}
+    </update>
+
+    <delete id="delClient" parameterType="com.example.serverinfo.dto.EquipmentDTO">
+        delete from equipment_info where name=#{name}
+    </delete>
+</mapper>

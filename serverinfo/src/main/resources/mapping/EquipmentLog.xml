@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.serverinfo.mapper.EquipmentLogMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.serverinfo.dto.EquipmentForWebDTO">
+        <result column="ontime" jdbcType="DATE" property="ontime" />
+        <result column="count" jdbcType="VARCHAR" property="count" />
+    </resultMap>
+
+    <select id="selLog" resultMap="BaseResultMap" parameterType="com.example.serverinfo.dto.EquipmentLogDTO">
+        select * from equipment_log where <![CDATA[equipmentname = #{equipmentname} and time>#{time} and time<date_add(#{time},INTERVAL 1 DAY)]]>
+    </select>
+
+    <insert id="insertLog" parameterType="com.example.serverinfo.dto.EquipmentLogDTO">
+        insert into equipment_log values (equipmentname,time,count)
+        (#{equipmentname},#{time},#{count})
+    </insert>
+
+</mapper>

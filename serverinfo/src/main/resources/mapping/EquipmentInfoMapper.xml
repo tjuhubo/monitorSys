@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.serverinfo.mapper.EquipmentInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.serverinfo.dto.EquipmentInfoDTO">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="os" jdbcType="VARCHAR" property="os" />
+        <result column="ip" jdbcType="VARCHAR" property="ip" />
+        <result column="maxcount" jdbcType="INTEGER" property="maxcount" />
+        <result column="nowcount" jdbcType="INTEGER" property="nowcount" />
+        <result column="ontime" jdbcType="DATE" property="ontime" />
+    </resultMap>
+
+    <resultMap id="BaseResultMap1" type="com.example.serverinfo.dto.EquipmentLogDTO">
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="nowcount" jdbcType="INTEGER" property="count" />
+    </resultMap>
+
+    <select id="selAll" resultMap="BaseResultMap">
+        select * from equipment_info where ontime is not null
+    </select>
+
+    <update id="offUpdate" parameterType="com.example.serverinfo.dto.EquipmentDTO">
+        update equipment_info set ontime=null,nowcount=0 where name=#{name}
+    </update>
+
+    <update id="onUpdate" parameterType="com.example.serverinfo.dto.EquipmentInfoDTO">
+        update equipment_info set ontime = #{ontime} where name=#{name}
+    </update>
+
+    <insert id="insertIntoLog" parameterType="com.example.serverinfo.dto.EquipmentInfoDTO">
+        insert into equipment_info(name,os,maxcount,nowcount,ontime,ip) values (#{name},#{os},#{maxcount},#{nowcount},#{ontime},#{ip})
+    </insert>
+
+    <select id="selForLog" parameterType="com.example.serverinfo.dto.EquipmentDTO" resultMap="BaseResultMap1">
+        select * from equipment_info where name=#{name}
+    </select>
+
+</mapper>
